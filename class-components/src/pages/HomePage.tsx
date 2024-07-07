@@ -3,6 +3,7 @@ import { fetchItems } from '../api';
 import SearchInput from '../components/Search/SearchInput';
 import SearchButton from '../components/Search/SearchButton';
 import SearchResults from '../components/SearchResults/SearchResults';
+import Loader from '../components/Loader/Loader';
 import './HomePage.css';
 
 class HomePage extends Component {
@@ -10,7 +11,7 @@ class HomePage extends Component {
   state = {
     searchTerm: this.savedSearchTerm,
     results: [],
-    currentPage: 1,
+    loading: false,
   };
 
   componentDidMount() {
@@ -26,27 +27,27 @@ class HomePage extends Component {
   };
 
   performSearch = async () => {
+    this.setState({ loading: true });
     const { searchTerm } = this.state;
     try {
       const data = await fetchItems(searchTerm.trim());
-      this.setState({ results: data.results });
+      this.setState({ results: data.results, loading: false });
       localStorage.setItem('searchTerm', searchTerm.trim());
     } catch (error) {
       console.error('Search failed', error);
+      this.setState({ loading: false });
     }
   };
 
   render() {
-    const { searchTerm, results } = this.state;
+    const { searchTerm, results, loading } = this.state;
     return (
       <div className="home">
         <div>
           <SearchInput value={searchTerm} onChange={this.handleInputChange} />
           <SearchButton onClick={this.handleSearchClick} />
         </div>
-        <div>
-          <SearchResults results={results} />
-        </div>
+        <div>{loading ? <Loader /> : <SearchResults results={results} />}</div>
       </div>
     );
   }
