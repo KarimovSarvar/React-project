@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import type { CharacterCard } from '../../types/SearchResults';
 import CharacterCardTemplate from '../CharacterCard/CharacterCard';
+import './SearchResults.css';
 
 interface Props {
   results: CharacterCard[];
@@ -9,7 +10,7 @@ interface Props {
 class SearchResults extends Component<Props> {
   render() {
     return (
-      <div>
+      <div className="results">
         {this.props.results.map((result, index) => (
           <CharacterCardTemplate
             key={index}

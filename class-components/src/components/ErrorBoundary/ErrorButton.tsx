@@ -1,11 +1,17 @@
 import { Component } from 'react';
 
 class ErrorButton extends Component {
+  state = { throwError: false };
+
   handleClick = () => {
-    throw new Error('Test error');
+    this.setState({ throwError: true });
   };
 
   render() {
+    if (this.state.throwError) {
+      throw new Error('Test error');
+    }
+
     return <button onClick={this.handleClick}>Throw Error</button>;
   }
 }

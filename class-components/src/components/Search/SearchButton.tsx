@@ -6,7 +6,11 @@ interface Props {
 
 class SearchButton extends Component<Props> {
   render() {
-    return <button onClick={this.props.onClick}>Search</button>;
+    return (
+      <button className="button" onClick={this.props.onClick}>
+        Search
+      </button>
+    );
   }
 }
 

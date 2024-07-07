@@ -3,22 +3,15 @@ import { fetchItems } from '../api';
 import SearchInput from '../components/Search/SearchInput';
 import SearchButton from '../components/Search/SearchButton';
 import SearchResults from '../components/SearchResults/SearchResults';
-import type { CharacterCard } from '../types/SearchResults';
+import './HomePage.css';
 
-interface State {
-  searchTerm: string;
-  results: CharacterCard[];
-}
-
-class HomePage extends Component<Record<string, never>, State> {
-  constructor(props: Record<string, never>) {
-    super(props);
-    const savedSearchTerm = localStorage.getItem('searchTerm') || '';
-    this.state = {
-      searchTerm: savedSearchTerm,
-      results: [],
-    };
-  }
+class HomePage extends Component {
+  savedSearchTerm = localStorage.getItem('searchTerm') || '';
+  state = {
+    searchTerm: this.savedSearchTerm,
+    results: [],
+    currentPage: 1,
+  };
 
   componentDidMount() {
     this.performSearch();
@@ -46,7 +39,7 @@ class HomePage extends Component<Record<string, never>, State> {
   render() {
     const { searchTerm, results } = this.state;
     return (
-      <div>
+      <div className="home">
         <div>
           <SearchInput value={searchTerm} onChange={this.handleInputChange} />
           <SearchButton onClick={this.handleSearchClick} />

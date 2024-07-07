@@ -13,11 +13,12 @@ module.exports = {
   ],
   ignorePatterns: ['dist', '.eslintrc.cjs'],
   parser: '@typescript-eslint/parser',
-  plugins: ['react', '@typescript-eslint', 'prettier'],
+  plugins: ['react', '@typescript-eslint', 'prettier', "react-compiler"],
   rules: {
     '@typescript-eslint/no-explicit-any': 'error',
     'prettier/prettier': 'error',
     'react/react-in-jsx-scope': 'off',
+    "react-compiler/react-compiler": "error"
   },
   settings: {
     react: {
