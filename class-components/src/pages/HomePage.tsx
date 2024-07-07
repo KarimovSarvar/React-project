@@ -3,14 +3,15 @@ import { fetchItems } from '../api';
 import SearchInput from '../components/Search/SearchInput';
 import SearchButton from '../components/Search/SearchButton';
 import SearchResults from '../components/SearchResults/SearchResults';
+import type { CharacterCard } from '../types/SearchResults';
 
 interface State {
   searchTerm: string;
-  results: any[];
+  results: CharacterCard[];
 }
 
-class HomePage extends Component<{}, State> {
-  constructor(props: {}) {
+class HomePage extends Component<Record<string, never>, State> {
+  constructor(props: Record<string, never>) {
     super(props);
     const savedSearchTerm = localStorage.getItem('searchTerm') || '';
     this.state = {

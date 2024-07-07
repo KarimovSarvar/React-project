@@ -1,7 +1,9 @@
 import { Component } from 'react';
+import type { CharacterCard } from '../../types/SearchResults';
+import CharacterCardTemplate from '../CharacterCard/CharacterCard';
 
 interface Props {
-  results: any[];
+  results: CharacterCard[];
 }
 
 class SearchResults extends Component<Props> {
@@ -9,10 +11,17 @@ class SearchResults extends Component<Props> {
     return (
       <div>
         {this.props.results.map((result, index) => (
-          <div key={index}>
-            <h3>{result.name}</h3>
-            <p>{result.description || 'No description available'}</p>
-          </div>
+          <CharacterCardTemplate
+            key={index}
+            name={result.name}
+            height={result.height}
+            mass={result.mass}
+            hair_color={result.hair_color}
+            skin_color={result.skin_color}
+            eye_color={result.eye_color}
+            birth_year={result.birth_year}
+            gender={result.gender}
+          />
         ))}
       </div>
     );
