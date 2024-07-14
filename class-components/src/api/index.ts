@@ -1,15 +1,29 @@
-import type { SearchResult } from '../types/SearchResults';
+import type { SearchResult, CharacterCard } from '../types/SearchResults';
 const API_BASE_URL = 'https://swapi.dev/api/people/';
 
-export const fetchItems = async (
-  searchTerm: string = '',
-  page: number = 1,
-): Promise<SearchResult> => {
-  const response = await fetch(
-    `${API_BASE_URL}?search=${searchTerm}&page=${page}`,
-  );
-  if (!response.ok) {
-    throw new Error('Failed to fetch data');
+export async function searchItems(
+  searchTerm: string,
+  page: number,
+): Promise<SearchResult | undefined> {
+  try {
+    const response = await fetch(
+      `${API_BASE_URL}?search=${searchTerm}&page=${page}`,
+    );
+    const result: SearchResult = await response.json();
+    return result;
+  } catch (error) {
+    console.error(error);
   }
-  return response.json();
-};
+}
+
+export async function searchItem(
+  id: string,
+): Promise<CharacterCard | undefined> {
+  try {
+    const response = await fetch(`${API_BASE_URL}${id}`);
+    const result: CharacterCard = await response.json();
+    return result;
+  } catch (error) {
+    console.error(error);
+  }
+}
