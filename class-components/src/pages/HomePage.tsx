@@ -19,19 +19,19 @@ const HomePage = () => {
 
   useEffect(() => {
     performSearch();
-  }, [currentPage]);
+  }, [currentPage, searchTerm]);
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
   };
 
   const handleSearchClick = () => {
-    setSearchParams({ page: '1' });
-    performSearch();
+    setSearchParams({ page: '1', search: searchTerm }); // Reset to first page on new search
   };
 
   const performSearch = async () => {
     setLoading(true);
+    console.log(currentPage, searchTerm);
     try {
       const data = await searchItems(searchTerm.trim(), currentPage);
       if (data) {
@@ -46,12 +46,15 @@ const HomePage = () => {
 
   const toThePrevPage = () => {
     if (currentPage > 1) {
-      setSearchParams({ page: (currentPage - 1).toString() });
+      setSearchParams({
+        page: (currentPage - 1).toString(),
+        search: searchTerm,
+      });
     }
   };
 
   const toTheNextPage = () => {
-    setSearchParams({ page: (currentPage + 1).toString() });
+    setSearchParams({ page: (currentPage + 1).toString(), search: searchTerm });
   };
 
   return (
@@ -66,7 +69,7 @@ const HomePage = () => {
         toThePrevPage={toThePrevPage}
         toTheNextPage={toTheNextPage}
       />
-      <Outlet /> {/* Добавляем Outlet для отображения дочерних маршрутов */}
+      <Outlet /> {}
     </div>
   );
 };

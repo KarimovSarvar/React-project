@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import type { CharacterCard } from '../../types/SearchResults';
 import CharacterCardTemplate from '../CharacterCard/CharacterCard';
 import './SearchResults.css';
@@ -10,11 +10,13 @@ interface Props {
 
 const SearchResults: React.FC<Props> = ({ results }) => {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const currentPage = searchParams.get('page');
+  const search = searchParams.get('search');
 
   const handleClick = (url: string) => {
     const id = url.split('/').slice(-2, -1)[0];
-    console.log(id);
-    navigate(`/details/${id}`);
+    navigate(`details/${id}`, { state: { currentPage, search } });
   };
 
   return (
