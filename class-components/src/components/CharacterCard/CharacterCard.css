@@ -1,0 +1,27 @@
+.card {
+  background-color: #1e1e1e;
+  border: 2px solid #4caf50;
+  border-radius: 8px;
+  width: 300px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  text-align: center;
+  margin: 20px auto;
+  color: #fff;
+}
+
+.card h1 {
+  color: #4caf50;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.card p {
+  margin: 5px 0;
+  font-size: 16px;
+}
+
+.card .label {
+  font-weight: bold;
+  color: #ffc107;
+}
