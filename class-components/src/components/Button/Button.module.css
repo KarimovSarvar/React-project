@@ -1,0 +1,42 @@
+.btn {
+  position: relative;
+  padding: 0.6rem 2rem;
+  border: none;
+  border-top: 0.2rem solid #787878;
+  outline: none;
+  color: #ffffff;
+  border-radius: 2rem;
+  background-color: rgba(56, 56, 56, 0.877);
+  font-size: 2.5rem;
+  font-family: Kreadon;
+  box-shadow: 0 0rem 1rem 0.1rem #090909;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  opacity: 0;
+  bottom: 70%;
+  left: 0;
+  right: 0;
+  width: 80%;
+  height: 40%;
+  margin: 0 auto;
+  border-radius: 2rem;
+  background-color: var(--accent-color);
+  z-index: -1;
+  filter: blur(2.2rem);
+  transform: scale(0);
+  transition: 0.3s;
+}
+
+.btn:hover {
+  color: var(--accent-color);
+}
+
+.btn:hover::before {
+  opacity: 1;
+  transform: scale(1);
+}

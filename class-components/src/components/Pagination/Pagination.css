@@ -1,0 +1,25 @@
+.pagination {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1.4rem;
+  }
+  
+  .pagination-btn {
+    height: 2.3rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-align: center;
+    color: black;
+    border: hsl(54, 86%, 51%);
+    background: hsl(54, 86%, 51%);
+    padding: 0 10px;
+    transition-duration: 0.5s;
+    border-radius: 25%;
+  }
+  
+  .pagination-btn:hover {
+    background: black;
+    color: hsl(54, 86%, 51%);
+    cursor: pointer;
+  }

@@ -1,0 +1,65 @@
+.wrapper {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1.5rem;
+  width: 25%;
+  height: 100%;
+  padding: 2rem;
+  background: radial-gradient(circle, #2b2b2b, #1a1a1a);
+  border-left: 2px solid #444;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+  font-family: 'Arial', sans-serif;
+  color: #ffffff;
+  text-align: center;
+  font-size: 1rem;
+  transform: translateX(100%);
+  transform-origin: right;
+  animation: wrapper-appear 0.5s forwards;
+  z-index: 1000; /* Ensures it is above other content */
+}
+
+.close_handler {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+  z-index: 999; /* Below the wrapper but above the main content */
+}
+
+.title {
+  color: var(--accent-color, #ff6f61);
+  font-weight: bold;
+  letter-spacing: 0.2rem;
+  font-size: 1.5rem;
+}
+
+.button {
+  margin-top: auto;
+  padding: 0.5rem 1rem;
+  border: none;
+  background-color: var(--accent-color, #ff6f61);
+  color: #ffffff;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  transition: background-color 0.3s;
+}
+
+.button:hover {
+  background-color: #e65a50;
+}
+
+@keyframes wrapper-appear {
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}

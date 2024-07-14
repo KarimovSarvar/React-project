@@ -1,18 +1,15 @@
-import { Component } from 'react';
-import HomePage from './pages/HomePage';
+import AppRouter from './router/router';
 import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
 import ErrorButton from './components/ErrorBoundary/ErrorButton';
 import './App.css';
 
-class App extends Component {
-  render() {
-    return (
-      <ErrorBoundary>
-        <HomePage />
-        <ErrorButton />
-      </ErrorBoundary>
-    );
-  }
-}
+const App = () => {
+  return (
+    <ErrorBoundary>
+      <AppRouter />
+      <ErrorButton />
+    </ErrorBoundary>
+  );
+};
 
 export default App;

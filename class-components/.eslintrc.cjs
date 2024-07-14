@@ -32,11 +32,22 @@ module.exports = {
     'plugin:jsx-a11y/recommended',
     'plugin:prettier/recommended',
   ],
-  plugins: ['react', 'simple-import-sort', 'prettier', 'react-refresh', 'react-compiler'],
+  plugins: [
+    'react',
+    'simple-import-sort',
+    'prettier',
+    'react-refresh',
+    'react-compiler',
+  ],
   rules: {
     'prettier/prettier': ['error', {}, { usePrettierrc: true }],
-    'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
+    'react/jsx-filename-extension': [
+      1,
+      { extensions: ['.js', '.jsx', '.ts', '.tsx'] },
+    ],
     'react/react-in-jsx-scope': 'off',
     'react-compiler/react-compiler': 'error',
+    'jsx-a11y/click-events-have-key-events': 'off',
+    'jsx-a11y/no-static-element-interactions': 'off',
   },
 };
