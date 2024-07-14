@@ -1,5 +1,5 @@
-const API_BASE_URL = 'https://swapi.dev/api/people/';
 import type { SearchResult } from '../types/SearchResults';
+const API_BASE_URL = 'https://swapi.dev/api/people/';
 
 export const fetchItems = async (
   searchTerm: string = '',
