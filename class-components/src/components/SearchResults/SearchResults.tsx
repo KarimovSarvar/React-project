@@ -11,12 +11,12 @@ interface Props {
 const SearchResults: React.FC<Props> = ({ results }) => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
-  const currentPage = searchParams.get('page');
-  const search = searchParams.get('search');
+  const currentPage = searchParams.get('page') || '1';
+  const search = searchParams.get('search') || '';
 
   const handleClick = (url: string) => {
     const id = url.split('/').slice(-2, -1)[0];
-    navigate(`details/${id}`, { state: { currentPage, search } });
+    navigate(`/details/${id}?page=${currentPage}&search=${search}`);
   };
 
   return (

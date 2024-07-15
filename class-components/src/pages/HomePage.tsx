@@ -26,7 +26,7 @@ const HomePage = () => {
   };
 
   const handleSearchClick = () => {
-    setSearchParams({ page: '1', search: searchTerm }); // Reset to first page on new search
+    setSearchParams({ page: '1', search: searchTerm });
   };
 
   const performSearch = async () => {

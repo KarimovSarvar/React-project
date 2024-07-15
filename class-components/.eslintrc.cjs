@@ -45,6 +45,8 @@ module.exports = {
       1,
       { extensions: ['.js', '.jsx', '.ts', '.tsx'] },
     ],
+    '@typescript-eslint/no-unused-vars': 'off',
+    '@typescript-eslint/no-explicit-any': 'error',
     'react/react-in-jsx-scope': 'off',
     'react-compiler/react-compiler': 'error',
     'jsx-a11y/click-events-have-key-events': 'off',

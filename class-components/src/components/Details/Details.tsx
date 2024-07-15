@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { searchItem } from '@/api';
 import type { CharacterCard } from '@/types/SearchResults';
 import Loader from '../Loader/Loader';
@@ -12,6 +12,9 @@ export function Details() {
   const [item, setItem] = useState<CharacterCard>();
 
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const currentPage = searchParams.get('page') || '1';
+  const search = searchParams.get('search') || '';
 
   useEffect(() => {
     if (id) {
@@ -27,7 +30,7 @@ export function Details() {
   }, [id]);
 
   const handleCloseButton = () => {
-    navigate(`/`);
+    navigate(`/?page=${currentPage}&search=${search}`);
   };
 
   return (
