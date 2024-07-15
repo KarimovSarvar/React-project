@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { searchItem } from '@/api';
 import type { CharacterCard } from '@/types/SearchResults';
@@ -10,6 +10,7 @@ export function Details() {
   const { id } = useParams<{ id: string }>();
   const [isLoading, setLoading] = useState(false);
   const [item, setItem] = useState<CharacterCard>();
+  const wrapperRef = useRef<HTMLDivElement>(null);
 
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
@@ -33,8 +34,24 @@ export function Details() {
     navigate(`/?page=${currentPage}&search=${search}`);
   };
 
+  const handleClickOutside = (event: MouseEvent) => {
+    if (
+      wrapperRef.current &&
+      !wrapperRef.current.contains(event.target as Node)
+    ) {
+      handleCloseButton();
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
   return (
-    <section className="wrapper">
+    <section ref={wrapperRef} className="wrapper">
       {!isLoading && item ? (
         <>
           <h2 className="title">{item.name}</h2>
