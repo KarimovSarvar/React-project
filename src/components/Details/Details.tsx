@@ -1,34 +1,20 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
-import { searchItem } from '@/api';
-import type { CharacterCard } from '@/types/SearchResults';
+import { useSearchItemQuery } from '@/api';
 import Loader from '../Loader/Loader';
 import { Button } from '../Button/Button';
 import './Details.css';
 
 export function Details() {
   const { id } = useParams<{ id: string }>();
-  const [isLoading, setLoading] = useState(false);
-  const [item, setItem] = useState<CharacterCard>();
   const wrapperRef = useRef<HTMLDivElement>(null);
+
+  const { data: item, error, isLoading } = useSearchItemQuery(id || '');
 
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const currentPage = searchParams.get('page') || '1';
   const search = searchParams.get('search') || '';
-
-  useEffect(() => {
-    if (id) {
-      setLoading(true);
-      const getItem = async () => {
-        const result = await searchItem(id);
-        setItem(result);
-        setLoading(false);
-      };
-
-      getItem();
-    }
-  }, [id]);
 
   const handleCloseButton = () => {
     navigate(`/?page=${currentPage}&search=${search}`);
@@ -52,7 +38,9 @@ export function Details() {
 
   return (
     <section ref={wrapperRef} className="wrapper">
-      {!isLoading && item ? (
+      {isLoading ? (
+        <Loader />
+      ) : item ? (
         <>
           <h2 className="title">{item.name}</h2>
           <p>Height: {item.height}</p>
