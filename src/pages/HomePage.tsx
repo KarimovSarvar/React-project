@@ -1,4 +1,4 @@
-import { ChangeEvent } from 'react';
+import { ChangeEvent, useState } from 'react';
 import { useSearchParams, Outlet } from 'react-router-dom';
 import { useSearchItemsQuery } from '../api';
 import SearchInput from '../components/Search/SearchInput';
@@ -11,6 +11,7 @@ import './HomePage.css';
 
 const HomePage = () => {
   const [searchTerm, setSearchTerm] = useLocalStorage('searchTerm', '');
+  const [searchInputValue, setSearchInputValue] = useState('');
   const [searchParams, setSearchParams] = useSearchParams();
   const currentPage = parseInt(searchParams.get('page') || '1', 10);
 
@@ -20,17 +21,16 @@ const HomePage = () => {
   });
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(event.target.value);
+    setSearchInputValue((prev) => (prev = event.target.value));
   };
 
   const handleSearchClick = () => {
+    setSearchTerm(searchInputValue);
     setSearchParams({ page: '1', search: searchTerm });
   };
 
   const toThePrevPage = () => {
     if (currentPage > 1) {
-      console.log('data:', data);
-      console.log(isLoading);
       setSearchParams({
         page: (currentPage - 1).toString(),
         search: searchTerm,
@@ -39,19 +39,21 @@ const HomePage = () => {
   };
 
   const toTheNextPage = () => {
-    console.log('data:', data);
-    console.log(isLoading);
     setSearchParams({ page: (currentPage + 1).toString(), search: searchTerm });
   };
 
   return (
     <div className="home">
       <div>
-        <SearchInput value={searchTerm} onChange={handleInputChange} />
+        <SearchInput value={searchInputValue} onChange={handleInputChange} />
         <SearchButton onClick={handleSearchClick} />
       </div>
       <div>
-        {isLoading ? <Loader /> : <SearchResults results={data?.results} />}
+        {isLoading ? (
+          <Loader />
+        ) : (
+          <SearchResults results={data?.results || []} />
+        )}
       </div>
       {isLoading ? (
         <Loader />

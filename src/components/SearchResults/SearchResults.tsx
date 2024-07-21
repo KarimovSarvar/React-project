@@ -1,4 +1,3 @@
-import React from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import type { CharacterCard } from '../../types/SearchResults';
 import CharacterCardTemplate from '../CharacterCard/CharacterCard';
@@ -21,21 +20,22 @@ const SearchResults: React.FC<Props> = ({ results }) => {
 
   return (
     <div className="results">
-      {results.map((result) => (
-        <CharacterCardTemplate
-          key={result.url}
-          name={result.name}
-          height={result.height}
-          mass={result.mass}
-          hair_color={result.hair_color}
-          skin_color={result.skin_color}
-          eye_color={result.eye_color}
-          birth_year={result.birth_year}
-          gender={result.gender}
-          onClick={() => handleClick(result.url)}
-          url={''}
-        />
-      ))}
+      {results.length > 0 &&
+        results.map((result) => (
+          <CharacterCardTemplate
+            key={result.url}
+            name={result.name}
+            height={result.height}
+            mass={result.mass}
+            hair_color={result.hair_color}
+            skin_color={result.skin_color}
+            eye_color={result.eye_color}
+            birth_year={result.birth_year}
+            gender={result.gender}
+            onClick={() => handleClick(result.url)}
+            url={''}
+          />
+        ))}
     </div>
   );
 };

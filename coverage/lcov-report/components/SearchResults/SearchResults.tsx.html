@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">63.63% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>11/11</span>
+                <span class='fraction'>7/11</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">33.33% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>2/4</span>
+                <span class='fraction'>2/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">25% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>4/4</span>
+                <span class='fraction'>1/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">63.63% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>11/11</span>
+                <span class='fraction'>7/11</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line high'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -115,32 +115,22 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -149,8 +139,17 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from 'react';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { useNavigate, useSearchParams } from 'react-router-dom';
 import type { CharacterCard } from '../../types/SearchResults';
 import CharacterCardTemplate from '../CharacterCard/CharacterCard';
 import './SearchResults.css';
@@ -165,28 +164,29 @@ const SearchResults: React.FC&lt;Props&gt; = ({ results }) =&gt; {
   const currentPage = searchParams.get('page') || <span class="branch-1 cbranch-no" title="branch not covered" >'1';</span>
   const search = searchParams.get('search') || <span class="branch-1 cbranch-no" title="branch not covered" >'';</span>
 &nbsp;
-  const handleClick = (url: string) =&gt; {
-    const id = url.split('/').slice(-2, -1)[0];
-    navigate(`/details/${id}?page=${currentPage}&amp;search=${search}`);
+  const handleClick = <span class="fstat-no" title="function not covered" >(u</span>rl: string) =&gt; {
+    const id = <span class="cstat-no" title="statement not covered" >url.split('/').slice(-2, -1)[0];</span>
+<span class="cstat-no" title="statement not covered" >    navigate(`/details/${id}?page=${currentPage}&amp;search=${search}`);</span>
   };
 &nbsp;
   return (
     &lt;div className="results"&gt;
-      {results.map((result) =&gt; (
-        &lt;CharacterCardTemplate
-          key={result.url}
-          name={result.name}
-          height={result.height}
-          mass={result.mass}
-          hair_color={result.hair_color}
-          skin_color={result.skin_color}
-          eye_color={result.eye_color}
-          birth_year={result.birth_year}
-          gender={result.gender}
-          onClick={() =&gt; handleClick(result.url)}
-          url={''}
-        /&gt;
-      ))}
+      {results.length &gt; 0 &amp;&amp;
+        results.map(<span class="fstat-no" title="function not covered" >(r</span>esult) =&gt; (
+<span class="cstat-no" title="statement not covered" >          &lt;CharacterCardTemplate</span>
+            key={result.url}
+            name={result.name}
+            height={result.height}
+            mass={result.mass}
+            hair_color={result.hair_color}
+            skin_color={result.skin_color}
+            eye_color={result.eye_color}
+            birth_year={result.birth_year}
+            gender={result.gender}
+            onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >handleClick(result.url)}</span>
+            url={''}
+          /&gt;
+        ))}
     &lt;/div&gt;
   );
 };
@@ -199,7 +199,7 @@ export default SearchResults;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-07-15T08:10:33.879Z
+                at 2024-07-21T06:23:15.394Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

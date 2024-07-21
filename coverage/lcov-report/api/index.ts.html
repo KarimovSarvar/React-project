@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">9.09% </span>
+                <span class="strong">66.66% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>1/11</span>
+                <span class='fraction'>4/6</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">33.33% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/2</span>
+                <span class='fraction'>1/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">9.09% </span>
+                <span class="strong">66.66% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>1/11</span>
+                <span class='fraction'>4/6</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -89,22 +89,23 @@
 <a name='L24'></a><a href='#L24'>24</a>
 <a name='L25'></a><a href='#L25'>25</a>
 <a name='L26'></a><a href='#L26'>26</a>
-<a name='L27'></a><a href='#L27'>27</a>
-<a name='L28'></a><a href='#L28'>28</a>
-<a name='L29'></a><a href='#L29'>29</a>
-<a name='L30'></a><a href='#L30'>30</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L27'></a><a href='#L27'>27</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -113,43 +114,33 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import type { SearchResult, CharacterCard } from '../types/SearchResults';
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import type { SearchResult, CharacterCard } from '../types/SearchResults';
+&nbsp;
 const API_BASE_URL = 'https://swapi.dev/api/people/';
 &nbsp;
-export async function <span class="fstat-no" title="function not covered" >searchItems(</span>
-  searchTerm: string,
-  page: number,
-): Promise&lt;SearchResult | undefined&gt; {
-<span class="cstat-no" title="statement not covered" >  try {</span>
-    const response = <span class="cstat-no" title="statement not covered" >await fetch(</span>
-      `${API_BASE_URL}?search=${searchTerm}&amp;page=${page}`,
-    );
-    const result: SearchResult = <span class="cstat-no" title="statement not covered" >await response.json();</span>
-<span class="cstat-no" title="statement not covered" >    return result;</span>
-  } catch (error) {
-<span class="cstat-no" title="statement not covered" >    console.error(error);</span>
-  }
-}
+export const searchApi = createApi({
+  reducerPath: 'searchApi',
+  baseQuery: fetchBaseQuery({ baseUrl: API_BASE_URL }),
+  endpoints: (builder) =&gt; ({
+    searchItems: builder.query&lt;
+      SearchResult,
+      { searchTerm: string; page: number }
+    &gt;({
+      query: <span class="fstat-no" title="function not covered" >({</span> searchTerm, page }) =&gt; (<span class="cstat-no" title="statement not covered" >{</span>
+        url: `?search=${searchTerm}&amp;page=${page}`,
+      }),
+    }),
+    searchItem: builder.query&lt;CharacterCard, string&gt;({
+      query: <span class="fstat-no" title="function not covered" >(i</span>d) =&gt; (<span class="cstat-no" title="statement not covered" >{</span>
+        url: `${id}`,
+      }),
+    }),
+  }),
+});
 &nbsp;
-export async function <span class="fstat-no" title="function not covered" >searchItem(</span>
-  id: string,
-): Promise&lt;CharacterCard | undefined&gt; {
-<span class="cstat-no" title="statement not covered" >  try {</span>
-    const response = <span class="cstat-no" title="statement not covered" >await fetch(`${API_BASE_URL}${id}`);</span>
-    const result: CharacterCard = <span class="cstat-no" title="statement not covered" >await response.json();</span>
-<span class="cstat-no" title="statement not covered" >    return result;</span>
-  } catch (error) {
-<span class="cstat-no" title="statement not covered" >    console.error(error);</span>
-  }
-}
+export const { useSearchItemsQuery, useSearchItemQuery } = searchApi;
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -157,7 +148,7 @@ export async function <span class="fstat-no" title="function not covered" >searc
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-07-15T08:10:33.879Z
+                at 2024-07-21T06:23:15.394Z
             </div>
         <script src="../prettify.js"></script>
         <script>
