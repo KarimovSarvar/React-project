@@ -1,11 +1,12 @@
 import { useEffect, useRef } from 'react';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { useSearchItemQuery } from '@/api';
+import { useTheme } from '@/theme/ThemeContext';
 import Loader from '../Loader/Loader';
-import { Button } from '../Button/Button';
 import './Details.css';
 
 export function Details() {
+  const { theme } = useTheme();
   const { id } = useParams<{ id: string }>();
   const wrapperRef = useRef<HTMLDivElement>(null);
 
@@ -37,26 +38,29 @@ export function Details() {
   }, []);
 
   return (
-    <section ref={wrapperRef} className="wrapper">
-      {isLoading ? (
-        <Loader />
-      ) : item ? (
-        <>
-          <h2 className="title">{item.name}</h2>
-          <p>Height: {item.height}</p>
-          <p>Mass: {item.mass}</p>
-          <p>Hair color: {item.hair_color}</p>
-          <p>Skin color: {item.skin_color}</p>
-          <p>Eye color: {item.eye_color}</p>
-          <p>Birth year: {item.birth_year}</p>
-          <p>Gender: {item.gender}</p>
-          <Button onClick={handleCloseButton} type="button">
-            Close
-          </Button>
-        </>
-      ) : (
-        <Loader />
-      )}
-    </section>
+    <>
+      <div className="close_handler" onClick={() => handleClickOutside} />
+      <section ref={wrapperRef} className={`wrapper ${theme}`}>
+        {isLoading ? (
+          <Loader />
+        ) : item ? (
+          <>
+            <h2 className="title">{item.name}</h2>
+            <p>Height: {item.height}</p>
+            <p>Mass: {item.mass}</p>
+            <p>Hair color: {item.hair_color}</p>
+            <p>Skin color: {item.skin_color}</p>
+            <p>Eye color: {item.eye_color}</p>
+            <p>Birth year: {item.birth_year}</p>
+            <p>Gender: {item.gender}</p>
+            <button onClick={handleCloseButton} className="button">
+              Close
+            </button>
+          </>
+        ) : (
+          <Loader />
+        )}
+      </section>
+    </>
   );
 }

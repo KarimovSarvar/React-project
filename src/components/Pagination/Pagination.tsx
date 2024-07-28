@@ -1,23 +1,26 @@
+import { useAppDispatch, useAppSelector } from '@/hooks/hooks';
+import { toTheNextPage, toThePrevPage } from '@/slices/PageSlice';
 import './Pagination.css';
 
-interface PaginationProps {
-  currentPage: number;
-  toThePrevPage: () => void;
-  toTheNextPage: () => void;
-}
+export default function Pagination() {
+  const dispatch = useAppDispatch();
+  const page = useAppSelector((state) => state.page);
 
-export default function Pagination({
-  currentPage,
-  toThePrevPage,
-  toTheNextPage,
-}: PaginationProps) {
   return (
     <div className="pagination">
-      <button className="pagination-btn" type="button" onClick={toThePrevPage}>
+      <button
+        className="pagination-btn"
+        type="button"
+        onClick={() => dispatch(toThePrevPage())}
+      >
         &lt;
       </button>
-      <p>{currentPage}</p>
-      <button className="pagination-btn" type="button" onClick={toTheNextPage}>
+      <p>{page}</p>
+      <button
+        className="pagination-btn"
+        type="button"
+        onClick={() => dispatch(toTheNextPage())}
+      >
         &gt;
       </button>
     </div>

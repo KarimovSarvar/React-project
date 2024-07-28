@@ -1,4 +1,4 @@
-import React from 'react';
+import { useTheme } from '@/theme/ThemeContext';
 import './Search.css';
 
 interface Props {
@@ -6,7 +6,12 @@ interface Props {
 }
 
 const SearchButton: React.FC<Props> = ({ onClick }) => {
-  return <button onClick={onClick}>Search</button>;
+  const { theme } = useTheme();
+  return (
+    <button onClick={onClick} className={`search-btn ${theme}`}>
+      Search
+    </button>
+  );
 };
 
 export default SearchButton;

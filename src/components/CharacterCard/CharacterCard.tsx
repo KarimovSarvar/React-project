@@ -1,7 +1,8 @@
+import { useTheme } from '@/theme/ThemeContext';
 import type { CharacterCard } from '../../types/SearchResults';
 import './CharacterCard.css';
 
-interface CharacterCardAction extends CharacterCard {
+interface CharacterCardAction extends Omit<CharacterCard, 'url'> {
   onClick: () => void;
 }
 
@@ -16,8 +17,14 @@ const CharacterCardTemplate: React.FC<CharacterCardAction> = ({
   gender,
   onClick,
 }) => {
+  const { theme } = useTheme();
   return (
-    <div className="card" onClick={onClick} role="button" tabIndex={0}>
+    <div
+      className={`card ${theme}`}
+      onClick={onClick}
+      role="button"
+      tabIndex={0}
+    >
       <h1>{name}</h1>
       <p>
         <span className="label">Height:</span> {height} cm

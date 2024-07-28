@@ -1,19 +1,23 @@
 import { ChangeEvent, useState } from 'react';
 import { useSearchParams, Outlet } from 'react-router-dom';
+import { useAppSelector } from '@/hooks/hooks';
 import { useSearchItemsQuery } from '../api';
 import SearchInput from '../components/Search/SearchInput';
 import SearchButton from '../components/Search/SearchButton';
 import SearchResults from '../components/SearchResults/SearchResults';
 import Loader from '../components/Loader/Loader';
 import Pagination from '../components/Pagination/Pagination';
+import ToggleButton from '@/components/ToggleButton/ToggleButton';
 import useLocalStorage from '../hooks/useLocalStorage';
+import { useTheme } from '@/theme/ThemeContext';
 import './HomePage.css';
 
 const HomePage = () => {
   const [searchTerm, setSearchTerm] = useLocalStorage('searchTerm', '');
-  const [searchInputValue, setSearchInputValue] = useState('');
+  const [searchInputValue, setSearchInputValue] = useState<string>('');
   const [searchParams, setSearchParams] = useSearchParams();
-  const currentPage = parseInt(searchParams.get('page') || '1', 10);
+  const currentPage = useAppSelector((state) => state.page);
+  const { theme, toggleTheme } = useTheme();
 
   const { data, isLoading } = useSearchItemsQuery({
     searchTerm: searchTerm,
@@ -29,41 +33,23 @@ const HomePage = () => {
     setSearchParams({ page: '1', search: searchTerm });
   };
 
-  const toThePrevPage = () => {
-    if (currentPage > 1) {
-      setSearchParams({
-        page: (currentPage - 1).toString(),
-        search: searchTerm,
-      });
-    }
-  };
-
-  const toTheNextPage = () => {
-    setSearchParams({ page: (currentPage + 1).toString(), search: searchTerm });
-  };
-
   return (
-    <div className="home">
-      <div>
-        <SearchInput value={searchInputValue} onChange={handleInputChange} />
-        <SearchButton onClick={handleSearchClick} />
-      </div>
-      <div>
-        {isLoading ? (
-          <Loader />
-        ) : (
+    <div className={`home ${theme}`}>
+      <header className="home-header">
+        <ToggleButton />
+      </header>
+      <main className="home-main">
+        <div className="search-bar">
+          <SearchInput value={searchInputValue} onChange={handleInputChange} />
+          <SearchButton onClick={handleSearchClick} />
+        </div>
+        <div className="results-section">
           <SearchResults results={data?.results || []} />
-        )}
-      </div>
-      {isLoading ? (
-        <Loader />
-      ) : (
-        <Pagination
-          currentPage={currentPage}
-          toThePrevPage={toThePrevPage}
-          toTheNextPage={toTheNextPage}
-        />
-      )}
+        </div>
+        <div className="pagination-section">
+          {isLoading ? <Loader /> : <Pagination />}
+        </div>
+      </main>
       <Outlet />
     </div>
   );

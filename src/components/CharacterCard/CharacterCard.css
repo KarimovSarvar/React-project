@@ -1,5 +1,4 @@
 .card {
-  background-color: #1e1e1e;
   border: 2px solid #4caf50;
   border-radius: 8px;
   width: 300px;
@@ -7,12 +6,11 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   text-align: center;
   margin: 20px auto;
-  color: #fff;
   cursor: pointer;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
 }
 
 .card h1 {
-  color: #4caf50;
   font-size: 24px;
   margin-bottom: 10px;
 }
@@ -24,5 +22,32 @@
 
 .card .label {
   font-weight: bold;
+}
+
+.card.light {
+  background-color: #fff;
+  color: #333;
+  border-color: #4caf50;
+}
+
+.card.light h1 {
+  color: #4caf50;
+}
+
+.card.light .label {
+  color: #ffc107;
+}
+
+.card.dark {
+  background-color: #1e1e1e;
+  color: #fff;
+  border-color: #4caf50;
+}
+
+.card.dark h1 {
+  color: #4caf50;
+}
+
+.card.dark .label {
   color: #ffc107;
 }

@@ -1,17 +1,18 @@
 import { Provider } from 'react-redux';
 import AppRouter from './router/router';
 import { store } from './store/store';
+import { ThemeProvider } from './theme/ThemeContext';
 import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
-import ErrorButton from './components/ErrorBoundary/ErrorButton';
 import './App.css';
 
 const App = () => {
   return (
     <Provider store={store}>
-      <ErrorBoundary>
-        <AppRouter />
-        <ErrorButton />
-      </ErrorBoundary>
+      <ThemeProvider>
+        <ErrorBoundary>
+          <AppRouter />
+        </ErrorBoundary>
+      </ThemeProvider>
     </Provider>
   );
 };
