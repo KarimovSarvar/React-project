@@ -8,6 +8,7 @@ import SearchResults from '../components/SearchResults/SearchResults';
 import Loader from '../components/Loader/Loader';
 import Pagination from '../components/Pagination/Pagination';
 import ToggleButton from '@/components/ToggleButton/ToggleButton';
+import Flyout from '@/components/Flyout/Flyout';
 import useLocalStorage from '../hooks/useLocalStorage';
 import { useTheme } from '@/theme/ThemeContext';
 import './HomePage.css';
@@ -48,6 +49,9 @@ const HomePage = () => {
         </div>
         <div className="pagination-section">
           {isLoading ? <Loader /> : <Pagination />}
+        </div>
+        <div>
+          <Flyout />
         </div>
       </main>
       <Outlet />

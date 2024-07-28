@@ -1,0 +1,54 @@
+.flyout {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .flyout-buttons {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .flyout-button {
+    padding: 0.5rem 1rem;
+    border: none;
+    cursor: pointer;
+    border-radius: 0.5rem;
+    transition: background-color 0.3s;
+  }
+
+  .flyout.light {
+    background-color: #f9f9f9;
+    color: #333;
+  }
+  
+  .flyout.light .flyout-button {
+    background-color: #4caf50;
+    color: #fff;
+  }
+  
+  .flyout.light .flyout-button:hover {
+    background-color: #45a049;
+  }
+
+  .flyout.dark {
+    background-color: #333;
+    color: #fff;
+  }
+  
+  .flyout.dark .flyout-button {
+    background-color: #ff6f61;
+    color: #fff;
+  }
+  
+  .flyout.dark .flyout-button:hover {
+    background-color: #e65a50;
+  }

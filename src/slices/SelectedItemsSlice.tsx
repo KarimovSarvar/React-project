@@ -37,6 +37,6 @@ const selectedItemsSlice = createSlice({
   },
 });
 
-export const { toggleItem } = selectedItemsSlice.actions;
+export const { toggleItem, unselectAll } = selectedItemsSlice.actions;
 export default selectedItemsSlice.reducer;
 export type { SelectedItemsState };
