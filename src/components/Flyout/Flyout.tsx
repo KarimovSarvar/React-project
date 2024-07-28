@@ -25,6 +25,7 @@ const Flyout: React.FC = () => {
     const csvContent = generateCSVContent(selectedItems);
     const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
     saveAs(blob, `${selectedItemsCount}_items.csv`);
+    dispatch(unselectAll());
   };
 
   return (
