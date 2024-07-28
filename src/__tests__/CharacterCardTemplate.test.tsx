@@ -1,4 +1,3 @@
-import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import CharacterCardTemplate from '../components/CharacterCard/CharacterCard';
 import type { CharacterCard } from '../types/SearchResults';
@@ -22,41 +21,13 @@ describe('CharacterCardTemplate', () => {
     );
 
     expect(getByText('Luke Skywalker')).toBeInTheDocument();
-    expect(
-      getByText((content, element) => {
-        return element?.textContent === 'Height: 172 cm';
-      }),
-    ).toBeInTheDocument();
-    expect(
-      getByText((content, element) => {
-        return element?.textContent === 'Mass: 77 kg';
-      }),
-    ).toBeInTheDocument();
-    expect(
-      getByText((content, element) => {
-        return element?.textContent === 'Hair Color: blond';
-      }),
-    ).toBeInTheDocument();
-    expect(
-      getByText((content, element) => {
-        return element?.textContent === 'Skin Color: fair';
-      }),
-    ).toBeInTheDocument();
-    expect(
-      getByText((content, element) => {
-        return element?.textContent === 'Eye Color: blue';
-      }),
-    ).toBeInTheDocument();
-    expect(
-      getByText((content, element) => {
-        return element?.textContent === 'Birth Year: 19BBY';
-      }),
-    ).toBeInTheDocument();
-    expect(
-      getByText((content, element) => {
-        return element?.textContent === 'Gender: male';
-      }),
-    ).toBeInTheDocument();
+    expect(getByText('Height: 172 cm')).toBeInTheDocument();
+    expect(getByText('Mass: 77 kg')).toBeInTheDocument();
+    expect(getByText('Hair Color: blond')).toBeInTheDocument();
+    expect(getByText('Skin Color: fair')).toBeInTheDocument();
+    expect(getByText('Eye Color: blue')).toBeInTheDocument();
+    expect(getByText('Birth Year: 19BBY')).toBeInTheDocument();
+    expect(getByText('Gender: male')).toBeInTheDocument();
   });
 
   it('calls onClick when clicked', () => {
